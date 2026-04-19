@@ -1,0 +1,15 @@
+personal:
+  name: "Adam Brez"
+  email: "totalylegit@email.com"
+  # optional URLs
+  linkedin: 'https://www.linkedin.com/in/saad-bahir-6919355a/'
+
+work:
+  - companyName: "TechCorp"
+    role: "Junior Developer"
+    date: "Jan 2023 - Present"
+    description:
+      - "Built an awesome CLI tool using TypeScript and Zod."
+      - "Pair programmed with a brilliant AI Tech Lead."
+
+# Add education and skills below...
