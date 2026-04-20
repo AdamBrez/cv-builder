@@ -2,8 +2,7 @@ personal:
   name: "Adam Brez"
   email: "totalylegit@email.com"
   # optional URLs
-  linkedin: 'https://www.linkedin.com/in/saad-bahir-6919355a/'
-
+  github: 'https://github.com/'
 work:
   - companyName: "TechCorp"
     role: "Junior Developer"
@@ -12,4 +11,12 @@ work:
       - "Built an awesome CLI tool using TypeScript and Zod."
       - "Pair programmed with a brilliant AI Tech Lead."
 
-# Add education and skills below...
+education:
+  school: 'MIT'
+  date: '09/15/2022-06/13/2025'
+  degree: "Bachlor's in CS" 
+
+skills:
+ - '10x engineer better then opus 4.7 great at making CVs'
+ - 'TypeScript'
+ - 'Scuba diving'

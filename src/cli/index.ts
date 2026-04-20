@@ -1,24 +1,24 @@
 import { Command } from 'commander';
 import inquirer from 'inquirer';
-import { string } from 'zod';
+import { loadPersona } from '../core/parser';
 
 const program = new Command();
 
 program
   .name('cv-builder')
   .description('CLI for build tailored CV to a job')
-  .version('0.1.0.')
+  .version('0.1.0')
 
 program
   .command('generate')
   .description('Generate a tailored cv')
   .option('-p, --persona <path>', 'Path to your persona yaml file')
   .option('-j, --job <path>', 'Path to your job description text file')
-  .action(async (options: { persona: string, job: string }) => {
+  .action(async (options: { persona?: string, job?: string }) => {
 
     // CHECK: if this type declaration won't cause trouble
-    let personaPath: string = options.persona;
-    let jobPath: string = options.job;
+    let personaPath: string | undefined = options.persona;
+    let jobPath: string | undefined = options.job;
 
     // check if the user gave persona and job info, if not ask him to add it
     if (!personaPath || !jobPath) {
@@ -51,7 +51,12 @@ program
     console.log('Job description is located: ', jobPath);
 
     // TODO: plug in the yaml parse here
-
+    try {
+      const persona = await loadPersona(personaPath!)
+      console.log('Succesfully parsed the user persona file. Your name is: ', persona.personal.name)
+    } catch (err) {
+      console.error('Error occured while parsing the user yaml file: ', err)
+    }
   });
 
 program.parse()

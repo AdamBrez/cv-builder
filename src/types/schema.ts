@@ -26,7 +26,7 @@ export const SkillsSchema = z.array(z.string())
 export const PersonaSchema = z.object({
   personal: PersonalDetailsSchema,
   work: z.array(WorkExperienceSchema),
-  education: z.array(EducationSchema),
+  education: EducationSchema,
   skills: SkillsSchema
 })
 
