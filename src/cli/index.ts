@@ -1,6 +1,9 @@
 import { Command } from 'commander';
 import inquirer from 'inquirer';
 import { loadPersona } from '../core/parser';
+import { readFile } from 'node:fs/promises';
+import 'dotenv/config';
+import { tailorCV } from '../ai/generator';
 
 const program = new Command();
 
@@ -36,7 +39,7 @@ program
           type: 'input',
           name: 'job',
           message: 'Where is your job description text file located?',
-          default: './job.txt',
+          default: './job.example.txt',
           when: !jobPath
         }
       ]);
@@ -50,10 +53,12 @@ program
     console.log('Persona is located: ', personaPath);
     console.log('Job description is located: ', jobPath);
 
-    // TODO: plug in the yaml parse here
     try {
       const persona = await loadPersona(personaPath!)
       console.log('Succesfully parsed the user persona file. Your name is: ', persona.personal.name)
+      const jobDescription = await readFile(jobPath!, 'utf8')
+      const tailoredCV = await tailorCV(persona, jobDescription);
+      console.log(tailoredCV.work[0].description)
     } catch (err) {
       console.error('Error occured while parsing the user yaml file: ', err)
     }

@@ -1,0 +1,23 @@
+
+Interning as a Junior Infrastructure Developer, you will 
+
+    Create and maintain Ansible playbooks
+    Orchestrate automation workflows
+    Automate tasks across public and private clouds
+    Follow automation best practices
+    Document solutions clearly and consistently
+
+What Should You Know/have
+
+    Basic Linux OS and command-line skills
+    Understanding of REST APIs and JSON
+    Scripting in Python or another object-oriented language
+    Nice to have Linux shell scripting, Database basics, Git fundamentals
+
+What Will You Do/learn
+
+    Experience writing Ansible playbooks in enterprise environments
+    Ability to orchestrate diverse automation tasks
+    Familiarity with public and private cloud platforms
+    Understanding of automation best practices
+    Understanding of documentation best practices
