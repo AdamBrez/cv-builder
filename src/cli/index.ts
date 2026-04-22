@@ -4,6 +4,7 @@ import { loadPersona } from '../core/parser';
 import { readFile } from 'node:fs/promises';
 import 'dotenv/config';
 import { tailorCV } from '../ai/generator';
+import { generatePdf } from '../core/pdf';
 
 const program = new Command();
 
@@ -19,7 +20,6 @@ program
   .option('-j, --job <path>', 'Path to your job description text file')
   .action(async (options: { persona?: string, job?: string }) => {
 
-    // CHECK: if this type declaration won't cause trouble
     let personaPath: string | undefined = options.persona;
     let jobPath: string | undefined = options.job;
 
@@ -50,8 +50,8 @@ program
     }
 
     console.log('Initializing  CV generation')
-    console.log('Persona is located: ', personaPath);
-    console.log('Job description is located: ', jobPath);
+    console.log('Persona is located at: ', personaPath);
+    console.log('Job description is located at: ', jobPath);
 
     try {
       const persona = await loadPersona(personaPath!)
@@ -59,6 +59,9 @@ program
       const jobDescription = await readFile(jobPath!, 'utf8')
       const tailoredCV = await tailorCV(persona, jobDescription);
       console.log(tailoredCV.work[0].description)
+      const outputPath = './tailored_cv.pdf';
+      await generatePdf(tailoredCV, outputPath);
+      console.log(`Your tailored CV is ready at: ${outputPath}`);
     } catch (err) {
       console.error('Error occured while parsing the user yaml file: ', err)
     }
